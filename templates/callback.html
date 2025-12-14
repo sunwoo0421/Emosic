@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Login Success - Emosic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container" style="text-align: center; padding-top: 50px;">
+        <h1>✅ 로그인 완료!</h1>
+        
+        <p class="subtitle">
+            Spotify 계정이 성공적으로 연결되었습니다.<br>
+            이제 당신의 기분을 들려주세요.
+        </p>
+
+        <div style="margin-top: 40px;">
+            <a href="{{ url_for('home') }}" class="btn-purple" style="text-decoration: none; padding: 15px 30px;">
+                🏠 메인으로 돌아가기
+            </a>
+        </div>
+    </div>
+</body>
+</html>

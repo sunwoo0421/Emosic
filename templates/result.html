@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emosic - 추천 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container" style="max-width: 1000px;"> <h1>🎵 추천 플레이리스트</h1>
+        <p style="color: var(--text-gray);">"{{ user_text }}"</p>
+        
+        <div class="emotion-tag">
+            분석된 감정: {{ emotion_result }}
+        </div>
+
+        <div class="track-list">
+            {% for track in tracks %}
+            <div class="track-card">
+                {% if track.img %}
+                <img src="{{ track.img }}" class="track-img" alt="Album Art">
+                {% endif %}
+                <div class="track-title">{{ track.name }}</div>
+                <div class="track-artist">{{ track.artists }}</div>
+                <a href="{{ track.url }}" target="_blank" class="spotify-btn">Spotify에서 듣기</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="feedback-section">
+            <h3>💬 추천 결과가 마음에 드시나요?</h3>
+            <p style="color: var(--text-gray); font-size: 0.9em; margin-bottom: 20px;">피드백을 남겨주시면 서비스가 더 똑똑해집니다.</p>
+            
+            <form action="/feedback" method="POST">
+                <div style="margin-bottom: 30px;">
+                    <p style="margin-bottom: 15px;">Q1. 추천 곡들의 분위기가 내 감정과 잘 맞나요?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="match" value="match" required> 😍 딱 맞아요</label>
+                        <label><input type="radio" name="match" value="partial"> 🙂 그저 그래요</label>
+                        <label><input type="radio" name="match" value="mismatch"> 😭 전혀 아니에요</label>
+                    </div>
+                </div>
+
+                <div>
+                    <p style="margin-bottom: 10px;">Q2. 전반적인 만족도는 몇 점인가요? (<span id="scoreVal" style="color:var(--purple-accent); font-weight:bold;">3</span>점)</p>
+                    <input type="range" name="score" min="1" max="5" value="3" oninput="document.getElementById('scoreVal').innerText = this.value">
+                </div>
+
+                <button type="submit" class="btn-purple" style="margin-top: 30px;">피드백 제출하기</button>
+            </form>
+        </div>
+
+        <a href="/" class="home-link">← 다시 검색하기</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>피드백 입력</title>
+</head>
+<body>
+    <h2>추천은 어땠나요?</h2>
+
+    <form action="/feedback" method="POST">
+
+        <h3>감정 일치 여부</h3>
+        <label><input type="radio" name="match" value="match" required> 일치</label>
+        <label><input type="radio" name="match" value="partial"> 부분 일치</label>
+        <label><input type="radio" name="match" value="mismatch"> 불일치</label>
+
+        <h3>만족도 (1~5점)</h3>
+        <select name="score" required>
+            <option value="5">5점</option>
+            <option value="4">4점</option>
+            <option value="3">3점</option>
+            <option value="2">2점</option>
+            <option value="1">1점</option>
+        </select>
+
+        <br><br>
+        <button type="submit">제출</button>
+    </form>
+
+</body>
+</html>

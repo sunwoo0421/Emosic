@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emosic - 감정 기반 음악 추천</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Emosic</h1>
+        <p class="subtitle">당신의 현재 기분을 들려주세요.<br>분위기에 맞는 음악을 찾아드릴게요.</p>
+
+        {% if error %}
+        <div style="color: #ff5252; background: rgba(255, 82, 82, 0.1); padding: 10px; border-radius: 10px; margin-bottom: 20px;">
+            ⚠️ {{ error }}
+        </div>
+        {% endif %}
+
+        <div style="margin-bottom: 30px;">
+            {% if session.get('spotify_token') %}
+                <div style="display: inline-block; padding: 12px 24px; background-color: #1DB954; color: white; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    ✅ Spotify 로그인 완료
+                </div>
+                <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">
+                    이제 아래에 감정을 입력하고 추천을 받아보세요!
+                </p>
+            {% else %}
+                <a href="/login" class="btn-spotify">
+                    <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png" alt="Spotify Logo" style="width: 20px; vertical-align: middle; margin-right: 8px;">
+                    Spotify 로그인
+                </a>
+                <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">
+                    (먼저 로그인해야 추천을 받을 수 있습니다)
+                </p>
+            {% endif %}
+        </div>
+
+        <form action="/result" method="POST">
+            <textarea name="text" rows="5" placeholder="예: 오늘 비도 오고 왠지 좀 센치한 기분이 드네... 그냥 멍때리고 싶어." required></textarea>
+            <br>
+            <button type="submit" class="btn-purple">음악 추천받기 ✨</button>
+        </form>
+        
+        {% if session.get('spotify_token') %}
+        <div style="margin-top: 20px;">
+             <a href="/logout" style="color: #555; font-size: 0.8rem; text-decoration: none;">[로그아웃 & 초기화]</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+/* Google Fonts 불러오기 (몽환적인 느낌의 Montserrat 폰트 사용) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+:root {
+    /* 컬러 팔레트 정의 */
+    --bg-dark: #0a0a0a;
+    --text-light: #ffffff;
+    --text-gray: #b3b3b3;
+    --purple-primary: #6200ea;   /* 깊은 보라 */
+    --purple-accent: #bb86fc;    /* 밝은 네온 보라 */
+    --purple-gradient: linear-gradient(135deg, var(--purple-primary), var(--purple-accent));
+    --glass-bg: rgba(30, 30, 30, 0.6); /* 반투명 유리 배경 */
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+    /* 배경 이미지 설정 + 어두운 오버레이 */
+    background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(40, 10, 60, 0.8)), 
+                url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 스크롤해도 배경 고정 */
+}
+
+/* 메인 컨테이너 (Glassmorphism 효과) */
+.container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px); /* 배경 흐림 효과 */
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: var(--glass-border);
+    text-align: center;
+}
+
+/* 타이틀 스타일 */
+h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    /* 텍스트에 보라색 그라데이션 적용 */
+    background: var(--purple-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.subtitle {
+    color: var(--text-gray);
+    margin-bottom: 30px;
+}
+
+/* --- Form 요소 스타일 --- */
+textarea, input[type="text"] {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(98, 0, 234, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 1rem;
+    resize: none;
+    transition: all 0.3s ease;
+}
+
+textarea:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--purple-accent);
+    box-shadow: 0 0 15px rgba(187, 134, 252, 0.3);
+}
+
+/* 버튼 스타일 (빛나는 보라색) */
+.btn-purple {
+    background: var(--purple-gradient);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(98, 0, 234, 0.4);
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn-purple:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(187, 134, 252, 0.6);
+    filter: brightness(1.1);
+}
+
+/* --- 결과 페이지 (Result) 스타일 --- */
+.emotion-tag {
+    display: inline-block;
+    background: rgba(98, 0, 234, 0.2);
+    color: var(--purple-accent);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    margin: 20px 0 30px;
+    border: 1px solid var(--purple-primary);
+}
+
+.track-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.track-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: var(--glass-border);
+}
+
+.track-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(98, 0, 234, 0.2);
+}
+
+.track-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.track-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist {
+    color: var(--text-gray);
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.spotify-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--purple-accent);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border: 2px solid var(--purple-accent);
+    transition: 0.3s;
+}
+
+.spotify-btn:hover {
+    background: var(--purple-accent);
+    color: var(--bg-dark);
+}
+
+/* --- 피드백 섹션 스타일 --- */
+.feedback-section {
+    margin-top: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 20px;
+    border: var(--glass-border);
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    cursor: pointer;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 30px;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.radio-group label:hover {
+    border-color: var(--purple-accent);
+    background: rgba(98, 0, 234, 0.1);
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+    accent-color: var(--purple-accent);
+}
+
+input[type="range"] {
+    width: 100%;
+    max-width: 400px;
+    accent-color: var(--purple-accent);
+    margin: 20px 0;
+}
+
+a.home-link {
+    color: var(--text-gray);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 30px;
+    transition: 0.3s;
+}
+a.home-link:hover {
+    color: var(--purple-accent);
+}
+
+
+
+/* Spotify 로그인 버튼 스타일 */
+.btn-spotify {
+    display: inline-block;
+    background-color: #b064ee; /* 스포티파이 공식 초록색 */
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(201, 157, 233, 0.4);
+    border: 1px solid transparent;
+}
+
+.btn-spotify:hover {
+    background-color: #b064ee; /* 호버 시 더 밝은 초록색 */
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(143, 29, 185, 0.6);
+    color: white;
+}
